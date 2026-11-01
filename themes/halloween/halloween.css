@@ -1,0 +1,196 @@
+/* ==========================================
+   FLATARCHIVE - HALLOWEEN MOTYW (themes/halloween/halloween.css)
+   ========================================== */
+
+/* Ciemne, mroczne tło i pomarańczowy tekst/akcenty */
+body {
+  background-color: #0f0e13; /* Bardzo ciemna czerń/fiolet */
+  color: #f1f5f9;
+}
+
+/* Sidebar w upiornym klimacie + zabezpieczenie pod animację dyń */
+#sidebar {
+  background-color: #1a1823;
+  border-right-color: #2e2a3d;
+  position: sticky;
+  top: 0;
+  overflow: hidden !important; /* Ukrywa dynie wychodzące poza obszar sidebara */
+}
+
+.brand a {
+  color: #ff7518; /* Halloweenowy pomarańcz */
+}
+
+/* Wyszukiwarka */
+#search-input {
+  border-color: #3b354d;
+  background-color: #121117;
+  color: #fff;
+}
+
+#search-input:focus {
+  border-color: #ff7518;
+  box-shadow: 0 0 0 2px rgba(255, 117, 24, 0.3);
+}
+
+.search-results {
+  border-color: #3b354d;
+  background-color: #1a1823;
+}
+
+.search-item:hover {
+  background-color: #2e2a3d;
+}
+
+.search-title {
+  color: #ff9e42;
+}
+
+.search-date {
+  color: #94a3b8;
+}
+
+/* Drzewko w menu */
+.menu-tree summary:hover {
+  background-color: #2e2a3d;
+}
+
+.tree-day {
+  color: #ff9e42;
+}
+
+.tree-day:hover {
+  background-color: #2e2a3d;
+}
+
+/* Przyciski w halloweenowym klimacie */
+.btn-primary {
+  background-color: #ff7518;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #e05e0b;
+}
+
+.btn-secondary {
+  background-color: #2e2a3d;
+  color: #f1f5f9;
+}
+
+.btn-secondary:hover {
+  background-color: #3b354d;
+}
+
+.btn-reindex {
+  background-color: #ff7518;
+}
+
+.btn-reindex:hover {
+  background-color: #e05e0b;
+}
+
+/* Obszar treści artykułu */
+#articles-container h1 {
+  border-bottom-color: #2e2a3d;
+  color: #ff7518;
+}
+
+#articles-container h2 {
+  color: #ff9e42;
+}
+
+#articles-container p {
+  color: #cbd5e1;
+}
+
+/* Wygląd okienek modalnych */
+.modal-content {
+  background-color: #1a1823;
+  border: 1px solid #3b354d;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+  color: #f1f5f9;
+}
+
+.modal-header h3 {
+  color: #ff7518;
+}
+
+.form-group input, .form-group textarea {
+  background-color: #121117;
+  border-color: #3b354d;
+  color: #fff;
+}
+
+.markdown-toolbar {
+  background: #121117;
+  border-color: #3b354d;
+}
+
+.markdown-toolbar button {
+  background: #1a1823;
+  color: #f1f5f9;
+  border-color: #3b354d;
+}
+
+.markdown-toolbar button:hover {
+  background: #2e2a3d;
+  border-color: #ff7518;
+}
+
+/* ==========================================
+   EFEKT SPADAJĄCYCH DYŃ W LEWYM PANELU
+   ========================================== */
+.sidebar-pumpkin {
+  position: absolute;
+  top: -20px;
+  font-size: 16px;
+  pointer-events: none;
+  z-index: 1;
+  animation: pumpkinFall linear infinite;
+  user-select: none;
+}
+
+@keyframes pumpkinFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg);
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg);
+  }
+}
+
+/* ==========================================
+   ŚWIECZKI / DYNIE W DOLNYCH ROGACH STRONY
+   ========================================== */
+.halloween-corner-candle {
+  position: fixed;
+  bottom: 15px;
+  font-size: 28px;
+  z-index: 9999;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px rgba(255, 117, 24, 0.8));
+  animation: candleGlow 2s ease-in-out infinite alternate;
+}
+
+.halloween-corner-candle.left {
+  left: 15px;
+}
+
+.halloween-corner-candle.right {
+  right: 15px;
+}
+
+@keyframes candleGlow {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgba(255, 117, 24, 0.5));
+  }
+  100% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 12px rgba(255, 117, 24, 0.9));
+  }
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Site Name in Bar</title>
+  <link rel="stylesheet" href="style.css?v=2.0.1">
+  <!-- Dynamiczny motyw (CSS) -->
+  <link id="theme-stylesheet" rel="stylesheet" href="">
+  <!-- Parser Markdown -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- Boczny panel -->
+  <aside id="sidebar">
+    <h2 class="brand">
+      <a href="#" onclick="wczytajPowitanie(); return false;">📂 MY SITE Name</a>
+    </h2>
+    
+    <button id="btn-new-post" class="btn-primary" onclick="otworzFormularzWpisu()" data-i18n="btn_new_post">➕ Nowy wpis</button>  
+
+    <!-- Wyszukiwarka -->
+    <div class="search-container">
+      <input 
+        type="text" 
+        id="search-input" 
+        data-i18n-ph="search_placeholder"
+        placeholder="Szukaj w artykułach..." 
+        oninput="obslugawyszukiwania(this.value)"
+      >
+      <div id="search-results" class="search-results"></div>
+    </div>
+
+    <!-- Nawigacja drzewiasta -->
+    <nav id="menu-tree" class="menu-tree"></nav>
+
+    <!-- Sekcja Archiwum w sidebarze -->
+    <div class="archive-menu-container" style="margin-top: 10px; border-top: 1px solid #e4e4e7; padding-top: 10px;">
+      <button class="btn-secondary" style="width: 100%; text-align: left; font-size: 0.85rem; background: #fef08a; color: #713f12;" onclick="pokazListeArchiwum()" data-i18n="menu_archive">
+        📦 Archiwum
+      </button>
+    </div>
+
+    <!-- Przycisk generowania indeksu na dole sidebar -->
+    <div class="reindex-container">
+      <button id="btn-reindex" class="btn-reindex" onclick="uruchomGenerowanieIndeksu()" data-i18n="btn_reindex">
+        🔄 Przelicz indeks (JSON)
+      </button>
+      <div id="reindex-status" class="reindex-status"></div>
+    </div>
+    
+    <!-- Wybór języka -->
+    <div class="lang-switcher">
+      <select id="lang-select" onchange="zmienJezyk(this.value)" style="padding: 4px 8px; font-size: 0.8rem; border-radius: 4px; border: 1px solid #ccc; cursor: pointer; background: #fff; width: 100%; margin-top: 10px;">
+        <option value="pl">🇵🇱 PL</option>
+        <option value="en">🇬🇧 EN</option>
+        <option value="fr">🇫🇷 FR</option>
+        <option value="es">🇪🇸 ES</option>
+        <option value="de">🇩🇪 DE</option>
+        <option value="ru">🇷🇺 RU</option>
+        <option value="zh">🇨🇳 ZH</option>
+      </select>
+    </div>
+   </aside>
+
+  <!-- Główny kontener na treść -->
+  <main id="content">
+    <article id="articles-container">
+      <p class="loading">Ładowanie...</p>
+    </article>
+  </main>
+
+  <!-- Modal 1: Dodawanie nowego wpisu -->
+  <div id="editor-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 data-i18n="modal_new_post_title">➕ Dodaj nowy wpis</h3>
+        <button class="btn-close" onclick="zamknijFormularzWpisu()">✖</button>
+      </div>
+      
+      <form id="form-new-post" onsubmit="zapiszWpis(event)">
+        <div class="form-group">
+          <label for="post-date" data-i18n="label_date">Data wpisu:</label>
+          <input type="date" id="post-date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="post-title" data-i18n="label_title">Tytuł artykułu:</label>
+          <input type="text" id="post-title" placeholder="np. Mój produktywny dzień" required>
+        </div>
+
+        <!-- Pasek Narzędzi Markdown -->
+        <div class="markdown-toolbar">
+          <button type="button" onclick="wstawMarkdown('**', '**')" title="Pogrubienie"><b>B</b></button>
+          <button type="button" onclick="wstawMarkdown('*', '*')" title="Kursywa"><i>I</i></button>
+          <button type="button" onclick="wstawMarkdown('## ')" title="Nagłówek H2"><b>H2</b></button>
+          <button type="button" onclick="wstawMarkdown('> ')" title="Cytat">💬 Cytat</button>
+          <button type="button" onclick="wstawMarkdown('`', '`')" title="Kod jednolinijkowy">💻 Kod</button>
+          <button type="button" onclick="wstawMarkdown('[', '](https://)')" title="Link">🔗 Link</button>
+        </div>
+
+        <div class="form-group">
+          <textarea id="post-content" rows="10" placeholder="Wpisz treść w formacie Markdown..." required></textarea>
+        </div>
+
+        <div id="form-status" class="form-status"></div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" onclick="zamknijFormularzWpisu()" data-i18n="btn_cancel">Anuluj</button>
+          <button type="submit" class="btn-primary" data-i18n="btn_save">💾 Zapisz wpis</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Wgrywanie załącznika -->
+  <div id="upload-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 data-i18n="modal_upload_title">📎 Dodaj załącznik do wpisu</h3>
+        <button class="btn-close" onclick="zamknijOknoUploadu()">✖</button>
+      </div>
+      
+      <form id="form-upload" onsubmit="wyślijZałącznik(event)">
+        <div class="form-group">
+          <label>Wybierz plik z dysku:</label>
+          <input type="file" id="upload-file-input" required>
+        </div>
+
+        <div id="upload-status" class="form-status"></div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" onclick="zamknijOknoUploadu()" data-i18n="btn_cancel">Anuluj</button>
+          <button type="submit" class="btn-primary" data-i18n="btn_upload">📤 Wyślij plik</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+   <!-- Wybór motywu -->
+    <div class="theme-switcher" style="margin-top: 10px;">
+      <select id="theme-select" onchange="zmienMotyw(this.value)" style="padding: 4px 8px; font-size: 0.8rem; border-radius: 4px; border: 1px solid #ccc; cursor: pointer; background: #fff; width: 100%;">
+        <option value="default">🎨 Domyślny</option>
+        <option value="winter">❄️ Zimowy</option>
+        <option value="halloween">🎃 Halloween</option>
+        <option value="hologram">🔮 3D Hologram</option>
+      </select>
+    </div>
+
+  <script src="dico.js?v=1.0.0"></script>
+  <script src="app.js?v=2.0.1"></script>
+</body>
+</html>

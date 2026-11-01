@@ -1,0 +1,143 @@
+/* ==========================================
+   FLATARCHIVE - ZIMOWY MOTYW (themes/winter/winter.css)
+   ========================================== */
+
+/* Ogólne tło strony i zimowy odcień tekstu */
+body {
+  background-color: #f0f8ff;
+  color: #1e293b;
+}
+
+/* Sidebar w mroźnych odcieniach + zabezpieczenie pod animację śniegu */
+#sidebar {
+  background-color: #e2e8f0;
+  border-right-color: #cbd5e1;
+  position: sticky;
+  top: 0;
+  overflow: hidden !important; /* Ukrywa płatki wychodzące poza obszar sidebara */
+}
+
+.brand a {
+  color: #0f172a;
+}
+
+/* Wyszukiwarka */
+#search-input {
+  border-color: #cbd5e1;
+  background-color: #ffffff;
+}
+
+#search-input:focus {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
+}
+
+.search-results {
+  border-color: #cbd5e1;
+}
+
+.search-item:hover {
+  background-color: #e0f2fe;
+}
+
+.search-title {
+  color: #0284c7;
+}
+
+/* Drzewko w menu */
+.menu-tree summary:hover {
+  background-color: #cbd5e1;
+}
+
+.tree-day {
+  color: #0369a1;
+}
+
+.tree-day:hover {
+  background-color: #e0f2fe;
+}
+
+/* Przyciski w zimowym klimacie */
+.btn-primary {
+  background-color: #0284c7;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #0369a1;
+}
+
+.btn-secondary {
+  background-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.btn-secondary:hover {
+  background-color: #94a3b8;
+}
+
+.btn-reindex {
+  background-color: #0284c7;
+}
+
+.btn-reindex:hover {
+  background-color: #0369a1;
+}
+
+/* Obszar treści artykułu */
+#articles-container h1 {
+  border-bottom-color: #cbd5e1;
+  color: #0f172a;
+}
+
+#articles-container h2 {
+  color: #0369a1;
+}
+
+#articles-container p {
+  color: #334155;
+}
+
+/* Wygląd okienek modalnych */
+.modal-content {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+}
+
+.markdown-toolbar {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.markdown-toolbar button:hover {
+  background: #e0f2fe;
+  border-color: #0284c7;
+}
+
+/* ==========================================
+   EFEKT PŁATKÓW ŚNIEGU WYŁĄCZNIE W SIDEBARZE
+   ========================================== */
+.sidebar-snowflake {
+  position: absolute;
+  top: -10px;
+  background: #ffffff;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.8;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  z-index: 1; /* Pod treścią menu, żeby nie zasłaniać klikalnych elementów */
+  animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(50vh) translateX(10px);
+  }
+  100% {
+    transform: translateY(105vh) translateX(-10px);
+  }
+}

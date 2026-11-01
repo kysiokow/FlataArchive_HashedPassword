@@ -1,0 +1,375 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  display: flex;
+  min-height: 100vh;
+  color: #27272a;
+  background-color: #ffffff;
+}
+
+/* Sidebar */
+#sidebar {
+  width: 320px;
+  background-color: #f4f4f5;
+  border-right: 1px solid #e4e4e7;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+
+.brand a {
+  color: #09090b;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+/* Wyszukiwarka */
+.search-container {
+  position: relative;
+}
+
+#search-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d4d4d8;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+#search-input:focus {
+  border-color: #2563eb;
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #d4d4d8;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  display: none;
+  z-index: 100;
+  margin-top: 4px;
+}
+
+.search-item {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f4f4f5;
+  cursor: pointer;
+}
+
+.search-item:hover {
+  background-color: #eff6ff;
+}
+
+.search-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1d4ed8;
+}
+
+.search-date {
+  font-size: 0.75rem;
+  color: #71717a;
+  margin-top: 2px;
+}
+
+/* Drzewko w menu */
+.menu-tree details {
+  margin: 4px 0;
+}
+
+.menu-tree summary {
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  user-select: none;
+}
+
+.menu-tree summary:hover {
+  background-color: #e4e4e7;
+}
+
+.tree-month {
+  margin-left: 12px;
+}
+
+.tree-day {
+  display: block;
+  margin-left: 24px;
+  padding: 4px 8px;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}
+
+.tree-day:hover {
+  background-color: #dbeafe;
+}
+
+/* Obszar roboczy z artykułami */
+#content {
+  flex: 1;
+  padding: 40px 60px;
+  max-width: 900px;
+}
+
+#articles-container h1 {
+  font-size: 2rem;
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e4e4e7;
+}
+
+#articles-container h2 {
+  font-size: 1.4rem;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  color: #09090b;
+}
+
+#articles-container h3 {
+  font-size: 1.1rem;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+#articles-container p {
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: #3f3f46;
+}
+
+#articles-container ul, #articles-container ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
+}
+
+/* Generowanie indeksu - Sidebar Footer */
+.reindex-container {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid #e4e4e7;
+}
+
+.btn-reindex {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-reindex:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-reindex:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.reindex-status {
+  font-size: 0.75rem;
+  color: #16a34a;
+  margin-top: 6px;
+  text-align: center;
+  font-weight: 500;
+  min-height: 1rem;
+}
+
+/* Przycisk akcji w sidebarze */
+.btn-primary {
+  width: 100%;
+  padding: 10px 14px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.btn-primary:hover { background-color: #1d4ed8; }
+
+.btn-secondary {
+  padding: 10px 14px;
+  background-color: #e4e4e7;
+  color: #27272a;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-secondary:hover { background-color: #d4d4d8; }
+
+/* Modal Edytora */
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Formularz */
+.form-group {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3f3f46;
+}
+.form-group input, .form-group textarea {
+  padding: 8px 12px;
+  border: 1px solid #d4d4d8;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+.form-group textarea {
+  resize: vertical;
+}
+
+/* Custom Markdown Toolbar */
+.markdown-toolbar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+  background: #f4f4f5;
+  padding: 4px;
+  border-radius: 6px;
+  border: 1px solid #e4e4e7;
+}
+.markdown-toolbar button {
+  padding: 4px 10px;
+  background: white;
+  border: 1px solid #d4d4d8;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.markdown-toolbar button:hover {
+  background: #eff6ff;
+  border-color: #2563eb;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+.form-status {
+  font-size: 0.85rem;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* ==========================================
+   RESPONSYWNOŚĆ DLA SMARTFONÓW (RWD)
+   ========================================== */
+
+@media screen and (max-width: 768px) {
+  body {
+    flex-direction: column; /* Układ kolumnowy: panel nad treścią */
+  }
+
+  /* Boczny panel staje się pełnoekranowy na górze */
+  #sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: auto;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid #e4e4e7;
+    padding: 16px;
+  }
+
+  /* Główny obszar treści */
+  #content {
+    padding: 20px 16px;
+    max-width: 100%;
+  }
+
+  /* Pasek akcji u góry otwartego wpisu (Data + Przyciski) */
+  #articles-container > div:first-child {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 12px;
+  }
+
+  #articles-container > div:first-child > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  #articles-container > div:first-child button {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Modale na całą szerokość ekranu telefonu */
+  .modal-content {
+    width: 95%;
+    margin: 10px;
+    padding: 16px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}

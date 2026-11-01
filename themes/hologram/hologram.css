@@ -1,0 +1,325 @@
+/* ==========================================
+   FLATARCHIVE - 3D HOLOGRAM MOTYW (themes/hologram/hologram.css)
+   ========================================== */
+
+/* Kolorystyka i tło hologramu */
+body {
+  background: radial-gradient(ellipse at center, #021526 0%, #000814 70%, #000000 100%);
+  color: #d4f7ff;
+}
+
+/* Boczny panel w klimacie cyjanowo-holograficznym */
+#sidebar {
+  background: rgba(2, 21, 38, 0.85);
+  border-right: 1px solid rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+  position: relative;
+  z-index: 2;
+}
+
+.brand a {
+  color: #00f0ff;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+/* Wyszukiwarka */
+#search-input {
+  border-color: rgba(0, 240, 255, 0.4);
+  background-color: rgba(0, 240, 255, 0.05);
+  color: #d4f7ff;
+}
+
+#search-input:focus {
+  border-color: #00f0ff;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+}
+
+.search-results {
+  border-color: rgba(0, 240, 255, 0.5);
+  background-color: rgba(2, 21, 38, 0.95);
+}
+
+.search-item:hover {
+  background-color: rgba(0, 240, 255, 0.15);
+}
+
+.search-title {
+  color: #00f0ff;
+}
+
+/* Drzewko w menu */
+.menu-tree summary:hover {
+  background-color: rgba(0, 240, 255, 0.1);
+  color: #00f0ff;
+}
+
+.tree-day {
+  color: #7dd3fc;
+}
+
+.tree-day:hover {
+  background-color: rgba(0, 240, 255, 0.15);
+  color: #00f0ff;
+}
+
+/* Przyciski */
+.btn-primary {
+  background-color: rgba(0, 240, 255, 0.2);
+  color: #00f0ff;
+  border: 1px solid rgba(0, 240, 255, 0.6);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: #00f0ff;
+  color: #000814;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.8);
+}
+
+.btn-secondary {
+  background-color: rgba(2, 21, 38, 0.7);
+  color: #d4f7ff;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0, 240, 255, 0.2);
+  border-color: #00f0ff;
+}
+
+.btn-reindex {
+  background-color: rgba(0, 240, 255, 0.15);
+  color: #00f0ff;
+  border: 1px solid rgba(0, 240, 255, 0.5);
+}
+
+.btn-reindex:hover {
+  background-color: #00f0ff;
+  color: #000;
+}
+
+/* Obszar treści artykułów */
+#articles-container h1 {
+  border-bottom-color: rgba(0, 240, 255, 0.3);
+  color: #00f0ff;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+#articles-container h2 {
+  color: #38bdf8;
+}
+
+#articles-container p, #articles-container li {
+  color: #bae6fd;
+}
+
+#articles-container code {
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: #00f0ff;
+}
+
+/* OKNA MODALNE (Edycja / Upload) - Stylizacja Hologramu */
+.modal-content {
+  background: rgba(2, 21, 38, 0.9);
+  border: 1px solid rgba(0, 240, 255, 0.6);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.35), inset 0 0 15px rgba(0, 240, 255, 0.2);
+  backdrop-filter: blur(12px);
+  color: #d4f7ff;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-header h3 {
+  color: #00f0ff;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+.form-group input, .form-group textarea {
+  background-color: rgba(0, 8, 20, 0.8);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: #00f0ff;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+  border-color: #00f0ff;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.markdown-toolbar {
+  background: rgba(0, 240, 255, 0.05);
+  border-color: rgba(0, 240, 255, 0.3);
+}
+
+.markdown-toolbar button {
+  background: rgba(2, 21, 38, 0.8);
+  color: #00f0ff;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.markdown-toolbar button:hover {
+  background: rgba(0, 240, 255, 0.25);
+  border-color: #00f0ff;
+}
+
+/* ==========================================
+   SIATKA HOLOGRAMU I LINIE SKANOWANIA
+   ========================================== */
+#hologram-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: 
+    linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+  background-size: 30px 30px;
+  box-shadow: inset 0 0 100px rgba(0, 240, 255, 0.2);
+}
+
+#hologram-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,240,255,0) 0%, rgba(0,240,255,0.08) 50%, rgba(0,240,255,0) 100%);
+  background-size: 100% 8px;
+  animation: holoScan 6s linear infinite;
+}
+
+@keyframes holoScan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* ==========================================
+   EFETY MATERILIZACJI I EKSPLOZJI PLAZMY DLA MODALI
+   ========================================== */
+.modal[style*="display: flex"] .modal-content,
+.modal[style*="display: block"] .modal-content {
+  animation: holoMistEmerge 860ms cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  transform-origin: center center;
+}
+
+@keyframes holoMistEmerge {
+  0% { opacity: 0; transform: perspective(1200px) translateY(28px) rotateX(15deg) scale(0.72); filter: blur(20px) brightness(2.6) saturate(1.9); }
+  36% { opacity: 0.74; transform: perspective(1200px) translateY(7px) rotateX(5deg) scale(1.025); filter: blur(5px) brightness(1.8) saturate(1.5); }
+  70% { opacity: 0.96; transform: perspective(1200px) translateY(-2px) rotateX(-2deg) scale(1.012); filter: blur(1px) brightness(1.22) saturate(1.2); }
+  100% { opacity: 1; transform: perspective(1200px) translateY(0) rotateX(0) scale(1); filter: blur(0) brightness(1) saturate(1); }
+}
+
+.holo-mist {
+  position: fixed;
+  width: 430px;
+  height: 290px;
+  pointer-events: none;
+  z-index: 9989;
+  overflow: visible;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+
+.holo-mist::before, .holo-mist::after {
+  content: "";
+  position: absolute;
+  inset: -36%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 34% 44%, rgba(212,255,255,0.98) 0 3%, rgba(0,240,255,0.72) 13%, rgba(0,128,255,0.22) 35%, transparent 67%), radial-gradient(ellipse at 72% 58%, rgba(158,91,255,0.44) 0 9%, rgba(0,240,255,0.25) 29%, transparent 64%);
+  filter: blur(18px) contrast(1.2);
+  opacity: 0;
+  transform: scale(0.18);
+  animation: holoFluidBloom 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.holo-mist::after {
+  animation-delay: 90ms;
+  filter: blur(31px) hue-rotate(22deg);
+  animation-name: holoFluidWake;
+}
+
+.holo-mist i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0 6%, #b6ffff 14%, #00f0ff 38%, rgba(0,240,255,0) 72%);
+  box-shadow: 0 0 15px #00f0ff, 0 0 28px rgba(130,60,255,0.62);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.15);
+  animation: holoMistParticle 820ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes holoFluidBloom { 0% { opacity: 0; transform: scale(0.12) rotate(0deg); } 27% { opacity: 0.95; } 100% { opacity: 0; transform: scale(1.18) rotate(22deg); } }
+@keyframes holoFluidWake { 0% { opacity: 0; transform: scale(0.18) rotate(0deg); } 32% { opacity: 0.58; } 100% { opacity: 0; transform: scale(1.55) rotate(-28deg); } }
+@keyframes holoMistParticle { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.12); filter: blur(9px); } 24% { opacity: 0.96; } 100% { opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.9); filter: blur(3px); } }
+
+/* Kula plazmy 3D powracająca w modalach */
+.holo-window-orb {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 92px;
+  height: 92px;
+  margin: -46px 0 0 -46px;
+  z-index: 999;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 0;
+  transform-style: preserve-3d;
+  background: radial-gradient(circle at 35% 30%, #fff 0%, #d9ffff 11%, #00f0ff 35%, rgba(0,240,255,.45) 56%, rgba(0,240,255,0) 75%);
+  box-shadow: 0 0 18px #fff, 0 0 46px #00f0ff, 0 0 94px rgba(0,240,255,.85), inset 0 0 25px #fff;
+  animation: holoWindowOrbBurst 760ms cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.holo-window-orb::before, .holo-window-orb::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.holo-window-orb::before {
+  inset: -20px;
+  border: 2px solid rgba(0,240,255,.9);
+  box-shadow: 0 0 22px #00f0ff, inset 0 0 14px #00f0ff;
+  animation: holoOrbRingOne .7s linear infinite;
+}
+
+.holo-window-orb::after {
+  inset: -35px;
+  border: 1px dashed rgba(148,78,255,.95);
+  box-shadow: 0 0 28px rgba(148,78,255,.9);
+  animation: holoOrbRingTwo .92s linear infinite;
+}
+
+.holo-window-orb span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px;
+  border-radius: 50%;
+  background: #bfffff;
+  box-shadow: 0 0 14px #fff, 0 0 28px #00f0ff;
+  opacity: 0;
+  animation: holoOrbSparks 680ms ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes holoWindowOrbBurst {
+  0% { opacity: 0; transform: scale(.07) rotateX(0deg) rotateY(0deg); filter: brightness(3) saturate(2); }
+  28% { opacity: 1; transform: scale(.82) rotateX(100deg) rotateY(70deg); }
+  62% { opacity: .9; transform: scale(1.5) rotateX(190deg) rotateY(155deg); }
+  100% { opacity: 0; transform: scale(3.2) rotateX(360deg) rotateY(360deg); filter: brightness(1.3) saturate(1); }
+}
+
+@keyframes holoOrbRingOne { to { transform: rotateX(68deg) rotateZ(360deg) scale(1.08); } }
+@keyframes holoOrbRingTwo { to { transform: rotateY(68deg) rotateZ(-360deg) scale(1.15); } }
+@keyframes holoOrbSparks {
+  0% { opacity: 0; transform: translate(-50%,-50%) scale(.2); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.4); }
+}
