@@ -85,7 +85,6 @@ The archive index maintains post metadata and content snippets structured like t
 ## 🔒 Custom Password Setup
 1. Use the provided `hash.php` script to generate a secure hash for your custom password (remeber to delete hash.php after all):
    ```php
-   <?php
-   $mojeHaslo = "password";
-   echo password_hash($mojeHaslo, PASSWORD_DEFAULT);
-   ?>
+  <?php
+echo password_hash("password", PASSWORD_DEFAULT);
+?>
